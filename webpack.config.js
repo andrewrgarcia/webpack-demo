@@ -3,18 +3,25 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
-  mode: 'development',
-  entry: {
-    index: './src/index.js',
-  },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Output Management',
+      title: 'Libraries',
     }),
   ],
   output: {
-    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    clean: true,
+    filename: 'webpack-numbers.js',
+    library: {
+      name: 'webpackNumbers',
+      type: 'umd',
+    },
+  },
+  externals: {
+    lodash: {
+      commonjs: 'lodash',
+      commonjs2: 'lodash',
+      amd: 'lodash',
+      root: '_',
+    },
   },
 };
